@@ -4,7 +4,7 @@ const term = @import("src/term.zig");
 pub fn main() !void {
     try term.clear();
     try term.hideCursor();
-    //defer term.showCursor();
+    try term.showCursor();
 
     try term.moveCursor(10, 5);
     try term.setFgColor256(33);
@@ -12,6 +12,7 @@ pub fn main() !void {
     try term.print("i hate lviv.\n", .{});
     try term.reset();
 
-    // var stdin = std.io.getStdIn().reader();
-    // _ = try stdin.readByte();
+    var b: [1]u8 = undefined;
+    const n = try std.fs.File.stdin().read(b[0..]);
+    _ = n;
 }
