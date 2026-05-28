@@ -1,8 +1,7 @@
 const std = @import("std");
 
 pub fn clear() !void {
-    const out = std.io.getStdOut().writer();
-    try out.print("\x1b[2J\x1b[H", .{});
+    try std.fs.File.stdout().writeAll("\x1b[2J\x1b[H", .{});
 }
 
 pub fn moveCursor(x: usize, y: usize) !void {
